@@ -21,7 +21,7 @@ public class GestorClientes {
     
     //constructor
     public GestorClientes() throws DateAccessException{
-             //levanta todo y devuelve una collection, lo casteo y lo guardo en cuenta
+        //levanta todo y devuelve una collection, lo casteo y lo guardo en cuenta
         //clientes=(String)clienteDAO.findAll();
     }
     
@@ -33,7 +33,7 @@ public class GestorClientes {
     }
     //seguir a partir de aqui, crear JTable para listar
     
-    public void agregarCuenta(Cliente cliente) throws DateAccessException{
+    public void agregarCliente(Cliente cliente) throws DateAccessException{
         
         clienteDAO.insert(cliente);//tomo el atributo cuentaDao, uso el metodo insert
         clientes.add(cliente);//loa agrego a la BD
@@ -50,6 +50,12 @@ public class GestorClientes {
         clienteDAO.delete(cuil);
         clientes.remove(cuil);
         
+    }
+    
+    public void modificarCliente(Cliente cliente) throws DateAccessException{
+        
+        clienteDAO.update(cliente);
+        clientes.add(cliente);
     }
     
 }
