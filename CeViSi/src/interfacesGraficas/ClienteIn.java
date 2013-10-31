@@ -122,12 +122,12 @@ public class ClienteIn extends javax.swing.JFrame {
         Cliente existe = gc.buscarCliente(buscar());
         
         if(existe!=null){
-        BuscarCli2 bc = new BuscarCli2(buscar());
+        BuscarCli bc = new BuscarCli(buscar());
         
         bc.setVisible(true);
         }
         else 
-           System.out.println("El cliente no exixte");
+           System.out.println("El cliente no existe");
         }catch(DateAccessException exc){
             System.out.println(exc);
         }
@@ -192,7 +192,6 @@ public class ClienteIn extends javax.swing.JFrame {
 public Integer buscar(){
         String id = jTextField1.getText();
         Integer idcli = Integer.parseInt(id);
-        //System.out.println(idcli);
         return idcli;}
 }
 

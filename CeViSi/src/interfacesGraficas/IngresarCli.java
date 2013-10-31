@@ -187,7 +187,7 @@ public class IngresarCli extends javax.swing.JFrame {
         
         Cliente cliente = new Cliente(numid,fecsql,cuil,nom,ape,dom,tele);
         GestorClientes gc = new GestorClientes();
-        gc.agregarCuenta(cliente);
+        gc.agregarCliente(cliente);
         
         }catch(DateAccessException exc) {
             System.out.println(exc);

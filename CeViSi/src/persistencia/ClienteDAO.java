@@ -32,12 +32,9 @@ public class ClienteDAO {
             smt.close();
             System.out.println("2");
 
-            
             smt2.executeQuery("Delete from persona where cuil='"+cuil+"'");
             System.out.println("3");
-            
-            
-            
+
             System.out.println("4");
             smt2.close();
             System.out.println("5");
@@ -170,19 +167,30 @@ public class ClienteDAO {
     }
     
     //modificar
-    public void update(Cliente insertRecord) throws DateAccessException{
+    public void update(Cliente updateRecord) throws DateAccessException{
         try {
             Connection con = BaseDeDatos.getInstance();
-            //solo modificamos los datos de persona.  id_cliente y fecha_inscripcio de tabla cliente
-            //no los modificamos
-            PreparedStatement smt = con.prepareStatement("Update persona"
-                    + "set domicilio=?, telefono=?"
+            //solo modificamos los datos de persona.  id_cliente y fecha_inscripcio 
+            //de tabla cliente no los modificamos
+
+            PreparedStatement smt = con.prepareStatement("Update persona "
+                    + "set domicilio=?, telefono=?, nombre=?, apellido=? "
                     + "where cuil=?");
+            smt.setString(1, updateRecord.getDomicilio());
+            smt.setInt(2, updateRecord.getTelefono());
+            smt.setString(3, updateRecord.getNombre());
+            smt.setString(4, updateRecord.getApellido());
+            smt.setString(5, updateRecord.getCuil());
             
-            smt.setString(1, insertRecord.getDomicilio());
-            smt.setInt(2, insertRecord.getTelefono());
+            PreparedStatement smt2 = con.prepareStatement("Update cliente "
+                    + "set id_cliente=?, fecha_inscripcion=? "
+                    + "where cuil=?");
+            smt2.setInt(1, updateRecord.getIdCliente());
+            smt2.setDate(2, updateRecord.getFechaInscripcion());
+            smt2.setString(3, updateRecord.getCuil());
             
             smt.execute();
+            smt2.execute();
             
         } catch (Exception e) {
             throw new DateAccessException("Error en ClienteDAO.update() "+e);
